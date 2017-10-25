@@ -1,11 +1,14 @@
 {
   "name": "module-files-patch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "fetch some files from your fork of some packages then overwrite the original files in node_modules",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "tsc index.ts"
+  },
+  "bin": {
+    "module-files-patch": "./index.js"
   },
   "repository": {
     "type": "git",

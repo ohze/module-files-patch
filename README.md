@@ -18,7 +18,7 @@ adding npm `postinstall` script to your `package.json`, ex:
 ```json
 {
   "scripts": {
-    "postinstall": "node module-files-patch cropperjs,20560,index angular,index,jqlite"
+    "postinstall": "module-files-patch cropperjs,20560,index angular,index,jqlite"
   }
 }
 ```

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // patching types
 
 // usage: ts-node index.ts <pkg>,[pull_request_number,]<file1>,<file2>
