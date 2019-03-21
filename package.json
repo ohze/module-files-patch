@@ -1,6 +1,6 @@
 {
   "name": "module-files-patch",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "fetch some files from your fork of some packages then overwrite the original files in node_modules",
   "main": "index.js",
   "scripts": {

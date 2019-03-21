@@ -57,7 +57,11 @@ for (let i = 2; i < process.argv.length; i++) {
     for (let f of filesToDel) {
         f = f.substr(1);
         f = `./node_modules/@types/${pkg}/${f}.d.ts`;
-        fs.unlinkSync(f);
-        console.log(`deleted ${f}`);
+        if (fs.existsSync(f)) {
+            fs.unlinkSync(f);
+            console.log(`deleted ${f}`);
+        } else {
+            console.log(`delete - file not found: ${f}`);
+        }
     }
 }
