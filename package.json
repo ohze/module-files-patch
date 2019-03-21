@@ -1,6 +1,6 @@
 {
   "name": "module-files-patch",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "fetch some files from your fork of some packages then overwrite the original files in node_modules",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,10 @@
   },
   "homepage": "https://github.com/ohze/module-files-patch#readme",
   "devDependencies": {
-    "@types/node": "^8.0.47",
-    "typescript": "^2.5.3"
+    "@types/node": "^11.11.4",
+    "typescript": "^3.3.4000"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }

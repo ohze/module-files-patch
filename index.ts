@@ -7,10 +7,12 @@
 // see npm script `prepare` in package.json
 import * as http from 'https';
 import * as fs from 'fs';
+import * as p from 'path';
 
 const GithubOrg = "ohze";
 
 function save(url, path) {
+    fs.mkdirSync(p.dirname(path), {recursive: true});
     const ws = fs.createWriteStream(path);
     console.log(`fetching ${url}`);
     ws.on("finish", () => console.log(`saved ${path}`));
@@ -32,6 +34,15 @@ function fetchTypes(pkg: string, files: string[]) {
     files.forEach(f => fetchType(pkg, f));
 }
 
+function partition<T>(arr: T[], condition: (T) => boolean): [T[], T[]] {
+    const l = [], r = [];
+    for(let a of arr) {
+        if (condition(a)) l.push(a);
+        else r.push(a);
+    }
+    return [l, r];
+}
+
 for (let i = 2; i < process.argv.length; i++) {
     const arg = process.argv[i];
     let [pkg, ...files] = arg.split(","); // tslint:disable-line prefer-const
@@ -41,5 +52,12 @@ for (let i = 2; i < process.argv.length; i++) {
         prNum = parseInt(prNum, 10);
         console.log(`TODO check https://github.com/DefinitelyTyped/DefinitelyTyped/pull/${prNum}`);
     }
-    fetchTypes(pkg, files);
+    const [filesToAdd, filesToDel] = partition(files, (name) => name[0] !== '%');
+    fetchTypes(pkg, filesToAdd);
+    for (let f of filesToDel) {
+        f = f.substr(1);
+        f = `./node_modules/@types/${pkg}/${f}.d.ts`;
+        fs.unlinkSync(f);
+        console.log(`deleted ${f}`);
+    }
 }

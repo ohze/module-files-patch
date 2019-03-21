@@ -18,14 +18,17 @@ adding npm `postinstall` script to your `package.json`, ex:
 ```json
 {
   "scripts": {
-    "postinstall": "module-files-patch cropperjs,20560,index angular,index,jqlite"
+    "postinstall": "module-files-patch rangy,34066,lib/rangy-classapplier,%rangy-classapplier angular,index,jqlite"
   }
 }
 ```
 
 Here:
-+ `cropperjs`, `angular` is the packages.
++ `rangy`, `angular` is the packages.
 + `20560` (optional) is the [PR number](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/20560)
-+ `index`, `jqlite` is filenames in the package. The following files will be fetch (from your fork) & overwrite:
-    + `node_modules/@types/cropperjs/index`
++ `lib/rangy-classapplier`, `index`, `jqlite` is files in the package that will be fetched.
+    The following files will be fetch (from your fork) & overwrite:
+    + `node_modules/@types/rangy/lib/rangy-classapplier.d.ts`
     + `node_modules/@types/angular/{index, jqlite}`
++ `%rangy-classapplier` (start with `%`) indicate the file will be deleted:
+    + `node_modules/@types/rangy/rangy-classapplier.d.ts`
